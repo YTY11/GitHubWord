@@ -1,0 +1,86 @@
+/*.even{*/
+/*    background-color: red;*/
+/*}*/
+/*.odd{*/
+/*    background-color: green;*/
+/*}*/
+
+/*p{*/
+/*    color: white;*/
+/*}*/
+/*body{*/
+/*    background-color: #34383B;*/
+/*}*/
+@media (max-width: 768px) {
+    /*超小屏幕设备 手机*/
+    /*input样式*/
+    .form-control{
+        border-radius: 30px;
+        height: 27px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        margin-right: auto;
+        background-color: #CACACA;
+    }
+
+    /*button样式*/
+    .btn{
+        border-radius: 25px;
+        line-height: 0.5;
+        width: 45px;
+        font-size: 8px;
+        margin-top: 5px;
+    }
+
+
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    /*小屏幕设备 平板*/
+
+
+    /*input样式*/
+    .form-control{
+        border-radius: 30px;
+        height: 35px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        background-color: #CACACA;
+    }
+
+    /*button样式*/
+    .btn{
+        border-radius: 50px;
+        line-height: 0.8;
+        width: 45px;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
+
+
+
+@media (min-width: 1200px) {
+    /*大屏幕设备 桌面*/
+
+
+    /*input样式*/
+    .form-control{
+        border-radius: 30px;
+        height: 45px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #CACACA;
+    }
+    .input-group-addon{
+        border-radius: 30px;
+        height: 20px;
+    }
+
+    /*button样式*/
+    .btn{
+        border-radius: 50px;
+        line-height: 1.2;
+        width: 65px;
+    }
+}

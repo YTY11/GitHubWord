@@ -1,0 +1,26 @@
+spring:
+  mvc:
+    view:
+      prefix: classpath:/templates/
+      suffix: .*
+  datasource:
+    username: F3102565
+    password: 123
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:oracle:thin:@10.195.227.239:1526:ZMLBAUTO
+  devtools:
+    restart:
+      enabled: true #开启热部署
+  freemarker:
+    cache: false #关闭缓存
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启驼峰命名法
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句
+pagehelper:
+  helper-dialect: oracle #指定分页插件使用那种语言
+  reasonable: true #设置分页参数的合理化，当pageNum<=0 时会查询第一页，pageNum>pages（超过总数时），会查询最后一页。
+  support-methods-arguments: true #支持通过 Mapper 接口参数来传递分页参数
+
+

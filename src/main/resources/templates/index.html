@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7-dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap-3.3.7-dist/css/index.css}">
+    <script th:src="@{/bootstrap-3.3.7-dist/js/jquery-3.5.1.min.js}"></script>
+    <script th:src="@{/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/bootstrap-3.3.7-dist/js/index.js}"></script>
+</head>
+
+<body>
+    <!-- 查询 -->
+    <form action="indexS" method="post" class="form-inline col-lg-offset-5 col-sm-offset-5 col-xs-offset-5 col-md-offset-5">
+        <div class="form-group">
+            <input id="key" onkeydown="" th:value="${name}" name="name" type="text" class="form-control"  placeholder="按姓名模糊查询">
+            <button type="submit" class="btn btn-primary" >查找</button>
+
+        </div>
+    </form>
+    <!-- 显示表格 -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xm-12">
+        <table id="allData" class="table table-striped table-bordered tab-content">
+            <thead>
+                <th>用户名</th>
+                <th>姓名</th>
+                <th>密码</th>
+                <th>级别</th>
+                <th>邮箱</th>
+                <th>电话</th>
+                <th>更新时间</th>
+                <th>楼层</th>
+                <th>操作</th>
+            </thead>
+            <tr th:id="${state.count}" th:each="user,state:${userPageInfo.list}">
+                <td  th:text="${user.userName}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.password}"></td>
+                <td th:text="${user.post}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.numberId}"></td>
+                <td th:text="${#dates.format(user.updateTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${user.floor}"></td>
+                <td>
+                    <a class="btn btn-primary"  onclick="updateUserModel(this)">更新</a>
+                    <a class="btn btn-danger" th:onclick="|deleteUse(${state.count})|">删除</a>
+                </td>
+            </tr>
+            <tr >
+                <td colspan="9" class="text-center">
+                    <button class="btn btn-primary" type="button"data-toggle="modal" data-target="#addUser">添加</button>
+                </td>
+            </tr>
+            <tr style="background-color: #D9534F">
+                <td colspan="9" class="text-center">
+                    <nav aria-label="Page navigation">
+                        <p>当前<span th:text="${userPageInfo.pageNum}"></span>页，总共<span th:text="${userPageInfo.pages}"></span>页，共<span th:text="${userPageInfo.total}"></span>条记录 </p>
+                        <ul class="pagination">
+                            <li><a th:href="@{indexS(start=${1})}">首页</a></li>
+                            <li>
+                                <a th:href="@{indexS(start=${userPageInfo.pageNum-1})}" aria-label="Previous">
+                                    <span aria-hidden="true">上一页</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a th:href="@{indexS(start=${userPageInfo.pageNum+1})}" aria-label="Next">
+                                    <span aria-hidden="true">下一页</span>
+                                </a>
+                            </li>
+                            <li> <a th:href="@{indexS(start=${userPageInfo.pages})}">末页</a></li>
+                        </ul>
+                    </nav>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 添加弹窗 -->
+    <div id="addUser" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="gridSystemModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 30px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 style="color: #D9534F;" class="modal-title text-center" id="gridSystemModal">添加</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form class="form-horizontal" method="post">
+
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input onblur="userNameVerify()" type="text" class="form-control" id="addUserName" name="userName" th:value="${userName}" placeholder="用户名">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control" id="addName" name="name" th:value="${name}" placeholder="姓名">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control" id="addUserPassword"  name="password" th:value="${password}" placeholder="密码">
+                            </div>
+
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <select id="post" name="post" class="form-control" th:value="${post}">
+                                    <option value="員级">員级</option>
+                                    <option value="師級">師級</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input onblur="validateEmail()" type="email" class="form-control" id="addUserEmail"  name="email" th:value="${email}" placeholder="邮箱">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control" id="addUserNumber"  name="numberId" th:value="${numberId}" placeholder="电话">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control" id="addUserFloor"  name="floor" th:value="${floor}" placeholder="楼层">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <div class="modal-footer">
+                                    <button  type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" onclick="addUserData()" class="btn btn-danger">添加</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 更新弹窗 -->
+    <div id="updateUser" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 30px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 style="color: #D9534F;" class="modal-title text-center" id="gridSystemModalLabel">更新</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form class="form-horizontal" method="post">
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control userName" id="updateUserName" name="userName" th:value="${userName}" readonly="readonly" placeholder="用户名">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control name" id="updateName" name="name" th:value="${name}" placeholder="姓名">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control password" id="updateUserPassword"  name="password" th:value="${password}" placeholder="密码">
+                            </div>
+
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <select id="updatePost" name="post" class="form-control post" th:value="${post}">
+                                    <option value="員级">員级</option>
+                                    <option value="師級">師級</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input onblur="validateEmail1()" type="email" class="form-control email" id="updateUserEmail"  name="email" th:value="${email}" placeholder="邮箱">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control number" id="updateUserNumber"  name="numberId" th:value="${numberId}" placeholder="电话">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <input type="text" class="form-control floor" id="updateUserFloor"  name="floor" th:value="${floor}" placeholder="楼层">
+                            </div>
+                            <div class="col-lg-offset-2 col-lg-8 col-xs-offset-2 col-xs-8 col-sm-offset-2 col-sm-8">
+                                <div class="modal-footer">
+                                    <button  type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" onclick="updateUserData()" class="btn btn-danger">更新</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

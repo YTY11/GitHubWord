@@ -1,0 +1,239 @@
+/*登陆页面背景色*/
+body{
+    background-color: #34383B;
+}
+
+/*登陆框div样式*/
+.center-in-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 30px;
+}
+ .div-color{
+    width: 500px;
+    height: 350px;
+    background-color: #E1E1E1;
+}
+
+
+ p{
+     margin-top: 25px;
+     font-size: 25px;
+     color: #D9534F;
+     text-align: center;
+ }
+
+ /*input样式*/
+.form-control{
+    border-radius: 30px;
+    height: 45px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #CACACA;
+}
+
+/*button样式*/
+.btn{
+    border-radius: 50px;
+    line-height: 1.2;
+    width: 65px;
+}
+
+/*a标签样式*/
+.aStyle{
+    color: #D9534F;
+    padding: 0px;
+    cursor:pointer
+}
+/*鼠标滑过效果*/
+.aStyle:hover{
+    color: red;
+    text-decoration:none;
+}
+
+/*|的样式*/
+label{
+    color: #D9534F;
+    margin: 2px 6px 5px 6px;
+    font-size: 17px;
+}
+
+/*登陆框底部的样式*/
+.bottomDiv{
+    background-color: #E15848;
+    width: 500px;
+    height: 25%;
+    border-top: 3px solid;
+    border-top-color: #AC443D;
+    border-radius: 0 0 30px 30px;
+    /*固定在底部*/
+    position: absolute;
+    bottom: 0px;
+}
+
+/*超小屏幕设备 手机*/
+@media (max-width: 768px) {
+
+    /*登陆框div样式*/
+    .center-in-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 30px;
+    }
+    .div-color{
+        width: 300px;
+        height: 250px;
+        background-color: #E1E1E1;
+    }
+    /*登陆框底部的样式*/
+    .bottomDiv{
+        background-color: #E15848;
+        width: 300px;
+        height: 25%;
+        border-top: 3px solid;
+        border-top-color: #AC443D;
+        border-radius: 0 0 30px 30px;
+        /*固定在底部*/
+        position: absolute;
+        bottom: 0px;
+    }
+    p{
+        margin-top: 20px;
+        font-size: 15px;
+        color: #D9534F;
+        text-align: center;
+    }
+
+    /*input样式*/
+    .form-control{
+        border-radius: 30px;
+        height: 27px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        background-color: #CACACA;
+    }
+
+    /*button样式*/
+    .btn{
+        border-radius: 25px;
+        line-height: 0.5;
+        width: 45px;
+        font-size: 8px;
+        margin-top: 5px;
+    }
+
+
+}
+/*小屏幕设备 平板*/
+@media (min-width: 768px) and (max-width: 1200px) {
+
+    /*登陆框div样式*/
+    .center-in-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 30px;
+    }
+    .div-color{
+        width: 350px;
+        height: 300px;
+        background-color: #E1E1E1;
+    }
+    /*登陆框底部的样式*/
+    .bottomDiv{
+        background-color: #E15848;
+        width: 350px;
+        height: 25%;
+        border-top: 3px solid;
+        border-top-color: #AC443D;
+        border-radius: 0 0 30px 30px;
+        /*固定在底部*/
+        position: absolute;
+        bottom: 0px;
+    }
+    p{
+        margin-top: 20px;
+        font-size: 20px;
+        color: #D9534F;
+        text-align: center;
+    }
+
+    /*input样式*/
+    .form-control{
+        border-radius: 30px;
+        height: 35px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        background-color: #CACACA;
+    }
+
+    /*button样式*/
+    .btn{
+        border-radius: 50px;
+        line-height: 0.8;
+        width: 45px;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+}
+
+
+/*大屏幕设备 桌面*/
+@media (min-width: 1200px) {
+
+    /*登陆框div样式*/
+    .center-in-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 30px;
+    }
+    .div-color{
+        width: 500px;
+        height: 350px;
+        background-color: #E1E1E1;
+    }
+    /*登陆框底部的样式*/
+    .bottomDiv{
+        background-color: #E15848;
+        width: 500px;
+        height: 25%;
+        border-top: 3px solid;
+        border-top-color: #AC443D;
+        border-radius: 0 0 30px 30px;
+        /*固定在底部*/
+        position: absolute;
+        bottom: 0px;
+    }
+
+    p{
+        margin-top: 25px;
+        font-size: 25px;
+        color: #D9534F;
+        text-align: center;
+    }
+
+    /*input样式*/
+    .form-control{
+        border-radius: 30px;
+        height: 45px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #CACACA;
+    }
+
+    /*button样式*/
+    .btn{
+        border-radius: 50px;
+        line-height: 1.2;
+        width: 65px;
+    }
+}
+
+
